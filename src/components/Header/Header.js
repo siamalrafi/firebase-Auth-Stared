@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import app from "../../Hook/firebaseConfig";
 import Swal from "sweetalert2";
 
@@ -10,23 +10,29 @@ const auth = getAuth(app)
 const Header = ({ user, setUser }) => {
   // console.log(user);
   const handleLogOut = () => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
+    /*   onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          const uid = user.uid;
+  
+          Swal.fire(
+            'Why Logout?',
+  
+          )
+  
+          // ...
+        } else {
+          // User is signed out
+          // ...
+        }
+      }); */
 
-        Swal.fire(
-          'Why Logout?',
+    signOut(auth)
 
-        )
 
-        // ...
-      } else {
-        // User is signed out
-        // ...
-      }
-    });
+
+
   }
   return (
     <div>
